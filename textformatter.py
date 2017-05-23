@@ -1,6 +1,7 @@
 # Script reads given input text file, reads it words, seperates words and special characters to
 #own lines and adds "   O" after every line.
 import re
+import sys
 
 """
 ####Input parameters
@@ -30,6 +31,13 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
     inputPath = options.input
     outputPath = options.output
+    
+    if (not inputPath or len(inputPath)==0 ):
+        print("Please give the input file with -i parameter")
+        sys.exit()
+
+    if (not outputPath or len(outputPath)==0 ):
+        outputPath = inputPath.replace('.txt','_output.txt')
     
     with open(inputPath) as f:
         content = f.readlines()
